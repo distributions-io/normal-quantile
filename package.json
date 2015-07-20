@@ -29,13 +29,17 @@
     "statistics",
     "stats",
     "cdf",
-    "inverse"
+    "inverse",
+    "gaussian",
+    "normal"
+    "percent points"
   ],
   "bugs": {
     "url": "https://github.com/compute-io/normal-quantile/issues"
   },
   "dependencies": {
     "compute-array-constructors": "^1.0.0",
+    "compute-erfinv": "^2.0.0",
     "dstructs-matrix": "^2.0.0",
     "utils-deep-get": "^1.0.0",
     "utils-deep-set": "^1.0.1",
@@ -44,6 +48,7 @@
     "validate.io-function": "^1.0.2",
     "validate.io-matrix-like": "^1.0.2",
     "validate.io-nan": "^1.0.3",
+    "validate.io-nonnegative": "^1.0.0",
     "validate.io-nonnegative-integer": "^1.0.0",
     "validate.io-number-primitive": "^1.0.0",
     "validate.io-object": "^1.0.4",
@@ -58,7 +63,7 @@
     "istanbul": "^0.3.0",
     "jshint": "2.x.x",
     "jshint-stylish": "2.x.x",
-	"validate.io-finite": "^1.0.0"
+    "validate.io-finite": "^1.0.0"
   },
   "license": "MIT"
 }

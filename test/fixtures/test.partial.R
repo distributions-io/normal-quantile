@@ -2,7 +2,7 @@ options( digits = 16 );
 library( jsonlite );
 
 
-mu = 0
+mu = 3
 sigma = 1
 probs = c( 0, 0.25, 0.5, 0.75, 1 )
 y = qnorm( probs, mu, sigma )

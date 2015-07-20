@@ -56,7 +56,7 @@ describe( 'deepset pdf', function tests() {
 
 		for ( i = 0; i < data.length; i++ ) {
 			if ( isFiniteNumber( data[ i ].x ) && isFiniteNumber( expected[ i ].x ) ) {
-				assert.closeTo( data[ i ].x, expected[ i ].x, 1e-12 );
+				assert.closeTo( data[ i ].x, expected[ i ].x, 1e-5 );
 			}
 		}
 
@@ -82,7 +82,7 @@ describe( 'deepset pdf', function tests() {
 
 		for ( i = 0; i < data.length; i++ ) {
 			if ( isFiniteNumber( data[ i ].x[ 1 ] ) && isFiniteNumber( expected[ i ].x[ 1 ] ) ) {
-				assert.closeTo( data[ i ].x[ 1 ], expected[ i ].x[ 1 ], 1e-12, 'custom separator' );
+				assert.closeTo( data[ i ].x[ 1 ], expected[ i ].x[ 1 ], 1e-5, 'custom separator' );
 			}
 		}
 	});

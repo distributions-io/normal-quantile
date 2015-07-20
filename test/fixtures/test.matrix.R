@@ -1,9 +1,9 @@
 options( digits = 16 );
 library( jsonlite );
 
-mu = 0
-sigma = 1
-probs = 0:24 / 25
+mu = 3
+sigma = 7
+probs = seq( 0, 1, length.out = 25 )
 y = qnorm( probs, mu, sigma )
 
 cat( y, sep = ",\n" )

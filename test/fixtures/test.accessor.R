@@ -2,8 +2,8 @@ options( digits = 16 );
 library( jsonlite );
 
 
-mu = 0
-sigma = 1
+mu = 3
+sigma = 10
 probs = seq( 0, 1, 0.1 )
 y = qnorm( probs, mu, sigma )
 
