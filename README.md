@@ -7,7 +7,7 @@ Quantile Function
 The [quantile function](https://en.wikipedia.org/wiki/Quantile_function) for a [Normal](https://en.wikipedia.org/wiki/Normal_distribution) random variable is
 
 <div class="equation" align="center" data-raw-text=" Q(p;\mu,\sigma) = \mu+\sigma\sqrt{2}\,\operatorname{erf}^{-1}(2p-1)" data-equation="eq:quantile_function">
-	<img src="" alt="Quantile function for a Normal distribution.">
+	<img src="https://cdn.rawgit.com/distributions-io/normal-quantile/5277bd1fd27698217bba83b9e2ecc88e76c68d9f/docs/img/eqn.svg" alt="Quantile function for a Normal distribution.">
 	<br>
 </div>
 
