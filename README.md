@@ -6,7 +6,7 @@ Quantile Function
 
 The [quantile function](https://en.wikipedia.org/wiki/Quantile_function) for a [Normal](https://en.wikipedia.org/wiki/Normal_distribution) random variable is
 
-<div class="equation" align="center" data-raw-text="" data-equation="eq:quantile_function">
+<div class="equation" align="center" data-raw-text=" Q(p;\mu,\sigma) = \mu+\sigma\sqrt{2}\,\operatorname{erf}^{-1}(2p-1)" data-equation="eq:quantile_function">
 	<img src="" alt="Quantile function for a Normal distribution.">
 	<br>
 </div>
@@ -40,15 +40,15 @@ var matrix = require( 'dstructs-matrix' ),
 	i;
 
 out = quantile( 0.25 );
-// returns
+// returns ~-0.674
 
 x = [ 0, 0.2, 0.4, 0.6, 0.8, 1 ];
 out = quantile( x );
-// returns [...]
+// returns [ -Infinity, ~-0.842, ~-0.253, ~0.253, ~0.842, +Infinity ]
 
 x = new Float32Array( x );
 out = quantile( x );
-// returns Float64Array( [...] )
+// returns Float64Array( [-Infinity,-0.842,-0.253,0.253,0.842,+Infinity] )
 
 x = new Float32Array( 6 );
 for ( i = 0; i < 6; i++ ) {
@@ -63,9 +63,9 @@ mat = matrix( x, [3,2], 'float32' );
 
 out = quantile( mat );
 /*
-	[
-
-	   ]
+	[ -Infinity ~-0.967
+	  ~-0.431   ~ 0
+	  ~ 0.431   ~ 0.967 ]
 */
 ```
 
@@ -88,7 +88,7 @@ var out = quantile( x, {
 	'mu': 8,
 	'sigma': 6,
 });
-// returns [...]
+// returns [ -Infinity, ~2.950, ~6.48, ~9.52, ~13.05, +Infinity  ]
 ```
 
 For non-numeric `arrays`, provide an accessor `function` for accessing `array` values.
@@ -110,7 +110,7 @@ function getValue( d, i ) {
 var out = quantile( data, {
 	'accessor': getValue
 });
-// returns [...]
+// returns [ -Infinity, ~-0.842, ~-0.253, ~0.253, ~0.842, +Infinity ]
 ```
 
 
@@ -132,12 +132,12 @@ var out = quantile( data, {
 });
 /*
 	[
-		{'x':[0,]},
-		{'x':[1,]},
-		{'x':[2,]},
-		{'x':[3,]},
-		{'x':[4,]},
-		{'x':[5,]}
+		{'x':[0,-Infinity]},
+		{'x':[1,~-0.842]},
+		{'x':[2,~-0.253]},
+		{'x':[3,~0.253]},
+		{'x':[4,~0.842]},
+		{'x':[5,+Infinity]}
 	]
 */
 
@@ -153,15 +153,20 @@ var x, out;
 x = new Float32Array( [0,0.2,0.4,0.6,0.8,1] );
 
 out = quantile( x, {
-	'dtype': 'int32'
+	'dtype': 'int32',
+	'mean': 8,
+	'sd': 6
 });
-// returns Int32Array( [...] )
+// returns Int32Array( [0,2,6,9,13,0] )
+// Beware: Infinity is cast to `0` for integer-typed arrays!
 
 // Works for plain arrays, as well...
 out = quantile( [0,0.2,0.4,0.6,0.8,1], {
-	'dtype': 'uint8'
+	'dtype': 'uint8',
+	'mean': 8,
+	'sd': 6
 });
-// returns Uint8Array( [...] )
+// returns Uint8Array( [0,2,6,9,13,0] )
 ```
 
 By default, the function returns a new data structure. To mutate the input data structure (e.g., when input values can be discarded or when optimizing memory usage), set the `copy` option to `false`.
@@ -178,7 +183,7 @@ x = [ 0, 0.2, 0.4, 0.6, 0.8, 1 ];
 out = quantile( x, {
 	'copy': false
 });
-// returns [...]
+// returns [ -Infinity, ~-0.842, ~-0.253, ~0.253, ~0.842, +Infinity ]
 
 bool = ( x === out );
 // returns true
@@ -198,9 +203,9 @@ out = quantile( mat, {
 	'copy': false
 });
 /*
-	[
-
-	   ]
+	[ -Infinity ~-0.967
+	  ~-0.431   ~ 0
+	  ~ 0.431   ~ 0.967 ]
 */
 
 bool = ( mat === out );
