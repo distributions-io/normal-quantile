@@ -215,7 +215,7 @@ bool = ( mat === out );
 
 ## Notes
 
-*	For any `p` outside the interval `[0,1]`, the the evaluated [quantile function](https://en.wikipedia.org/wiki/Quantile_function) is `NaN`.
+*	For any `p` outside the interval `[0,1]`, the evaluated [quantile function](https://en.wikipedia.org/wiki/Quantile_function) is `NaN`.
 
 	```javascript
 	var out;
