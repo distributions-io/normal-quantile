@@ -1,17 +1,17 @@
 Quantile Function
 ===
-[![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![Dependencies][dependencies-image]][dependencies-url]
+[![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][codecov-image]][codecov-url] [![Dependencies][dependencies-image]][dependencies-url]
 
 > [Normal](https://en.wikipedia.org/wiki/Normal_distribution) distribution [quantile function](https://en.wikipedia.org/wiki/Quantile_function).
 
-The [quantile function](https://en.wikipedia.org/wiki/Quantile_function) for a [Normal](https://en.wikipedia.org/wiki/Normal_distribution) random variable is
+The [quantile function](https://en.wikipedia.org/wiki/Quantile_function) for a [normal](https://en.wikipedia.org/wiki/Normal_distribution) random variable is
 
 <div class="equation" align="center" data-raw-text=" Q(p;\mu,\sigma) = \mu+\sigma\sqrt{2}\,\operatorname{erf}^{-1}(2p-1)" data-equation="eq:quantile_function">
 	<img src="https://cdn.rawgit.com/distributions-io/normal-quantile/5277bd1fd27698217bba83b9e2ecc88e76c68d9f/docs/img/eqn.svg" alt="Quantile function for a Normal distribution.">
 	<br>
 </div>
 
-for `0 <= p < 1`, where `mu` is the mean and `sigma` is the standard deviation.
+for `0 <= p < 1`, where `mu` is the mean and `sigma > 0` is the standard deviation.
 
 ## Installation
 
@@ -30,7 +30,7 @@ var quantile = require( 'distributions-normal-quantile' );
 
 #### quantile( p[, options] )
 
-Evaluates the [quantile function](https://en.wikipedia.org/wiki/Quantile_function) for the [Normal](https://en.wikipedia.org/wiki/Normal_distribution) distribution. `p` may be either a [`number`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) between `0` and `1`, an [`array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array), a [`typed array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays), or a [`matrix`](https://github.com/dstructs/matrix).
+Evaluates the [quantile function](https://en.wikipedia.org/wiki/Quantile_function) for the [normal](https://en.wikipedia.org/wiki/Normal_distribution) distribution. `p` may be either a [`number`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) between `0` and `1`, an [`array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array), a [`typed array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays), or a [`matrix`](https://github.com/dstructs/matrix).
 
 ``` javascript
 var matrix = require( 'dstructs-matrix' ),
@@ -79,7 +79,7 @@ The function accepts the following `options`:
 *	__path__: [deepget](https://github.com/kgryte/utils-deep-get)/[deepset](https://github.com/kgryte/utils-deep-set) key path.
 *	__sep__: [deepget](https://github.com/kgryte/utils-deep-get)/[deepset](https://github.com/kgryte/utils-deep-set) key path separator. Default: `'.'`.
 
-A [Normal](https://en.wikipedia.org/wiki/Normal_distribution) distribution is a function of 2 parameter(s): `mu`(mean) and `sigma`(standard deviation). By default, `mu` is equal to `0` and `sigma` is equal to `1`. To adjust either parameter, set the corresponding option(s).
+A [normal](https://en.wikipedia.org/wiki/Normal_distribution) distribution is a function of two parameters: `mu`(mean) and `sigma > 0`(standard deviation). By default, `mu` is equal to `0` and `sigma` is equal to `1`. To adjust either parameter, set the corresponding option.
 
 ``` javascript
 var x = [ 0, 0.2, 0.4, 0.6, 0.8, 1 ];
@@ -154,8 +154,8 @@ x = new Float32Array( [0,0.2,0.4,0.6,0.8,1] );
 
 out = quantile( x, {
 	'dtype': 'int32',
-	'mean': 8,
-	'sd': 6
+	'mu': 8,
+	'sigma': 6
 });
 // returns Int32Array( [0,2,6,9,13,0] )
 // Beware: Infinity is cast to `0` for integer-typed arrays!
@@ -163,8 +163,8 @@ out = quantile( x, {
 // Works for plain arrays, as well...
 out = quantile( [0,0.2,0.4,0.6,0.8,1], {
 	'dtype': 'uint8',
-	'mean': 8,
-	'sd': 6
+	'mu': 8,
+	'sigma': 6
 });
 // returns Uint8Array( [0,2,6,9,13,0] )
 ```
@@ -394,8 +394,8 @@ Copyright &copy; 2015. The [Compute.io](https://github.com/compute-io) Authors.
 [travis-image]: http://img.shields.io/travis/distributions-io/normal-quantile/master.svg
 [travis-url]: https://travis-ci.org/distributions-io/normal-quantile
 
-[coveralls-image]: https://img.shields.io/coveralls/distributions-io/normal-quantile/master.svg
-[coveralls-url]: https://coveralls.io/r/distributions-io/normal-quantile?branch=master
+[codecov-image]: https://img.shields.io/codecov/c/github/distributions-io/normal-quantile/master.svg
+[codecov-url]: https://codecov.io/github/distributions-io/normal-quantile?branch=master
 
 [dependencies-image]: http://img.shields.io/david/distributions-io/normal-quantile.svg
 [dependencies-url]: https://david-dm.org/distributions-io/normal-quantile
